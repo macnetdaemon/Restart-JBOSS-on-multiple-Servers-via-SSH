@@ -57,10 +57,11 @@ do
 	fi
 done
 
-echo "All server checks complete..."
+echo "--------------------------"
+printf "\nAll server checks complete..."
 
 if [ -z $badServer ]; then
-	printf "JBOSS is up and running on all servers!"
+	printf "\nJBOSS is up and running on all servers!\n"
 else
 	echo "Servers that are down: "$badServer
 
