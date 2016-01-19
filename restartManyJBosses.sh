@@ -6,8 +6,22 @@
 # scp ~/.ssh/id_dsa.pub your_admin_username@yourserver:.ssh/authorized_keys
 # Be sure to change your_admin_username@yourserver to the your credentials and server name.
 # Connect via ssh into your server and go to ~/.ssh
-# chown authorized keys with your_admin_username: e.g. sudo chown admin authorized_keys
-# sudo chmod 755 authorized_keys
+# Chown the authorized_keys file with your_admin_username: e.g. sudo chown admin authorized_keys
+# Update the permission: sudo chmod 755 authorized_keys
+#
+# If you run this on a Macintosh you can hardwire the username and password, the rename the script with
+# the file extension .command in order to make it double-clickable.
+#
+# The stop and start jboss commands will vary between applications. If you are running a scholastic server it will
+# look something like this:
+# sudo launchctl stop com.scholastic.slms.jboss.launchd
+#                         and
+# sudo launchctl start com.scholastic.slms.jboss.launchd
+#
+# If you are running a JAMF JSS server it will look like:
+# sudo launchctl unload /Library/LaunchDaemons/com.jamfsoftware.tomcat.plist
+#                         and
+# sudo launchctl load /Library/LaunchDaemons/com.jamfsoftware.tomcat.plist
 
 # Script begins here:
 
