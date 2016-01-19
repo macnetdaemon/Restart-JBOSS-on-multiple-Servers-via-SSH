@@ -1,11 +1,10 @@
 #/bin/bash
 
 # For this script to work you must setup your authorized ssh keys on all your remote servers.
-# Simple instructions (you many have to 
-# Generate your keys with a command like: ssh-keygen -t dsa
+# Simple instructions (you many have to generate your keys with a command like: ssh-keygen -t dsa
 # Copy them to your remote servers with scp:
 # scp ~/.ssh/id_dsa.pub your_admin_username@yourserver:.ssh/authorized_keys
-# be sure to change your_admin_username@yourserver to the your credentials and server name.
+# Be sure to change your_admin_username@yourserver to the your credentials and server name.
 # Connect via ssh into your server and go to ~/.ssh
 # chown authorized keys with your_admin_username: e.g. sudo chown admin authorized_keys
 # sudo chmod 755 authorized_keys
