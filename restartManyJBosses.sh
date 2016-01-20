@@ -1,11 +1,11 @@
 #/bin/bash
 
 # For this script to work you must setup your authorized ssh keys on all your remote servers.
-# Simple instructions (you many have to generate your keys with a command like: ssh-keygen -t dsa
-# If NO authorized_keys file exists in the account home dir/.ssh folder of your remote server
+# Simple instructions: You many have to generate your keys with a command like: ssh-keygen -t dsa
+# If NO authorized_keys file exists in the account home dir/.ssh folder of your remote server:
 # 	copy your public key to your remote servers with scp:
 # 	scp ~/.ssh/id_dsa.pub your_admin_username@yourserver:.ssh/authorized_keys
-# If an authorized keys file already exists on your remote server
+# If an authorized keys file already exists on your remote server:
 # 	you can copy your public key to the ~/.ssh folder as i.e. mykey.pub
 #	scp ~/.ssh/id_dsa.pub your_admin_username@yourserver:.ssh/mykey.pub
 #	append mykey.pub to authorized keys with: cat ~/.ssh/mykey.pub >> authorized_keys
@@ -15,11 +15,9 @@
 # 	Chown the authorized_keys file with your_admin_username: e.g. sudo chown admin authorized_keys
 # 	Update the permission: sudo chmod 755 authorized_keys
 #
-# If you run this on a Macintosh you can hardwire the username and password, the rename the script with
-# the file extension .command in order to make it double-clickable.
+# If you run this on a Macintosh you can hardwire the username and password, the rename the script with the file extension .command in order to make it double-clickable.
 #
-# The stop and start jboss commands will vary between applications. If you are running a scholastic server it will
-# look something like this:
+# The stop and start jboss commands will vary between applications. If you are running a scholastic server it will look something like this:
 # sudo launchctl stop com.scholastic.slms.jboss.launchd
 #                         and
 # sudo launchctl start com.scholastic.slms.jboss.launchd
@@ -39,12 +37,10 @@ if [ "$1" != "" ] && [ "$username" == "" ];then
     username=$1
 fi
 
-# CHECK TO SEE IF A VALUE WAS PASSED IN PARAMETER 2 AND, IF SO, ASSIGN TO "OLDPASSWORD"
+# CHECK TO SEE IF A VALUE WAS PASSED IN PARAMETER 2 AND, IF SO, ASSIGN TO "PASSWORD"
 if [ "$2" != "" ] && [ "$password" == "" ];then
     password=$2
 fi
-
-# Check all servers using curl to determine web page accessibility
 
 # Assign the array of server names
 # CHANGE THE NEXT LINE TO MATCH YOUR SERVERS
@@ -63,14 +59,14 @@ domainURL="myserver.mydomain:PortNumber/pathToPageIfAny"
 
 badServer=""
 
+# Check all servers using curl to determine web page accessibility
+
 for((i=0; i<${#names[*]}; i++))
 do
 	echo "--------------------------"
 	servername=${names[$i]}
 	URL=$servername$domainURL
-	#echo $URL
 	output=`curl -s -0 "/dev/null" $URL`
-	#echo "output is: "$output
 	if [ -z "$output" ]; then
 		echo $servername": JBOSS is down"
 		badServer="$badServer $servername"
