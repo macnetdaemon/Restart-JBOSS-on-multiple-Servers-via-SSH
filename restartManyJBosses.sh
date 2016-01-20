@@ -47,16 +47,19 @@ fi
 # Check all servers using curl to determine web page accessibility
 
 # Assign the array of server names
+# CHANGE THE NEXT LINE TO MATCH YOUR SERVERS
 
 names=(server1 server2 server 3)
 
-# For testing purposes we can specify only one server if we want
+# For testing purposes we can specify only one server if we want by uncommenting the next line and allowing the script to run on only 1 or selected servers.
 #names=(server1)
 
 # create domain url variable to append to server name
 # enter full path including ports and subdirectories to your JBOSS app home page
+# e.g. domainURL="myserver.123.edu:8443/anyapp/home"
+# CHANGE THE NEXT LINE TO MATCH YOUR TOMCAT URL
 
-domainURL="yourdomain:8443/pathToPageIfAny"
+domainURL="myserver.mydomain:PortNumber/pathToPageIfAny"
 
 badServer=""
 
