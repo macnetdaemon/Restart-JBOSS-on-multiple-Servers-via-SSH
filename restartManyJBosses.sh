@@ -43,6 +43,7 @@ if [ "$2" != "" ] && [ "$password" == "" ];then
 fi
 
 # Assign the array of server names
+
 # CHANGE THE NEXT LINE TO MATCH YOUR SERVERS
 
 names=(server1 server2 server 3)
@@ -53,6 +54,7 @@ names=(server1 server2 server 3)
 # create domain url variable to append to server name
 # enter full path including ports and subdirectories to your JBOSS app home page
 # e.g. domainURL="myserver.123.edu:8443/anyapp/home"
+
 # CHANGE THE NEXT LINE TO MATCH YOUR TOMCAT URL
 
 domainURL="myserver.mydomain:PortNumber/pathToPageIfAny"
