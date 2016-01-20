@@ -2,12 +2,18 @@
 
 # For this script to work you must setup your authorized ssh keys on all your remote servers.
 # Simple instructions (you many have to generate your keys with a command like: ssh-keygen -t dsa
-# Copy them to your remote servers with scp:
-# scp ~/.ssh/id_dsa.pub your_admin_username@yourserver:.ssh/authorized_keys
+# If NO authorized_keys file exists in the account home dir/.ssh folder of your remote server
+# 	copy your public key to your remote servers with scp:
+# 	scp ~/.ssh/id_dsa.pub your_admin_username@yourserver:.ssh/authorized_keys
+# If an authorized keys file already exists on your remote server
+# 	you can copy your public key to the ~/.ssh folder as i.e. mykey.pub
+#	scp ~/.ssh/id_dsa.pub your_admin_username@yourserver:.ssh/mykey.pub
+#	append mykey.pub to authorized keys with: cat ~/.ssh/mykey.pub >> authorized_keys
 # Be sure to change your_admin_username@yourserver to the your credentials and server name.
-# Connect via ssh into your server and go to ~/.ssh
-# Chown the authorized_keys file with your_admin_username: e.g. sudo chown admin authorized_keys
-# Update the permission: sudo chmod 755 authorized_keys
+# You _may_ need to:
+# 	Connect via ssh into your server and go to ~/.ssh
+# 	Chown the authorized_keys file with your_admin_username: e.g. sudo chown admin authorized_keys
+# 	Update the permission: sudo chmod 755 authorized_keys
 #
 # If you run this on a Macintosh you can hardwire the username and password, the rename the script with
 # the file extension .command in order to make it double-clickable.
@@ -22,7 +28,7 @@
 # sudo launchctl unload /Library/LaunchDaemons/com.jamfsoftware.tomcat.plist
 #                         and
 # sudo launchctl load /Library/LaunchDaemons/com.jamfsoftware.tomcat.plist
-
+# --------------------
 # Script begins here:
 
 username=''
@@ -85,7 +91,7 @@ else
 		badservername=${badServerArray[$i]}
 		printf "\nLogging into and attempting to restart JBOSS on: "$badservername"\n"
 		ssh $username@$badservername bash -c "'echo $password | sudo -S PUT_YOUR_JBOSS_STOP_COMMAND_HERE;sleep 5;echo $password | sudo -S PUT_YOUR_JBOSS_START_COMMAND_HERE;logout;'"
-		printf "\njboss on server: "$badservername" restarted\n"
+		printf "\nJBOSS on server: "$badservername" restarted\n"
 		printf "\nLogging out of "$badservername"\n"
 	done
 fi
