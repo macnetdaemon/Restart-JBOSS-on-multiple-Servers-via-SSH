@@ -91,6 +91,7 @@ else
 	do
 		badservername=${badServerArray[$i]}
 		printf "\nLogging into and attempting to restart JBOSS on: "$badservername"\n"
+# CHANGE THE JBOSS STOP / START COMMANDS ON THE FOLLOWING LINE:
 		ssh $username@$badservername bash -c "'echo $password | sudo -S PUT_YOUR_JBOSS_STOP_COMMAND_HERE;sleep 5;echo $password | sudo -S PUT_YOUR_JBOSS_START_COMMAND_HERE;logout;'"
 		printf "\nJBOSS on server: "$badservername" restarted\n"
 		printf "\nLogging out of "$badservername"\n"
